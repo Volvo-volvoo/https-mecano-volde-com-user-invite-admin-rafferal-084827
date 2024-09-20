@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de produits</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://image.noelshack.com/fichiers/2024/38/3/1726658986-paiement-par-lien-1.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparence pour lisibilité */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .chocolat-section {
+            background-color: #D2691E; /* Couleur chocolat */
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .section-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .separator {
+            border: 0;
+            border-top: 2px solid #fff;
+            margin: 10px 0;
+        }
+
+        .product-section {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-section img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .product-details {
+            text-align: left;
+        }
+
+        .product-details h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            color: #666;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mes Produits</h1>
+
+    <div class="container">
+        <!-- Section Revenus/Commission -->
+        <div class="chocolat-section">
+            <div class="section-content">
+                <div class="revenus">
+                    Revenus quotidienne: 24000.00 XOF
+                </div>
+                <div class="separator"></div>
+                <div class="commission">
+                    Commission: 729000.00 XOF
+                </div>
+            </div>
+        </div>
+
+        <!-- Section produit 1 avec image -->
+        <div class="product-section">
+            <img src="https://image.noelshack.com/fichiers/2024/38/4/1726748795-vem-motor-wernigerode.jpg" alt="CIO">
+            <div class="product-details">
+                <h3> machine 6</h3>
+                <p>Revenus quotidien : 15000 XOF XOF</p>
+                <p>Cycle : 30 jours</p>
+                <p>Revenus total : 450000.00 XOF XOF</p>
+                <p>Status : louée</p>
+            </div>
+        </div>
+
+        <!-- Section produit 2 avec image -->
+        <div class="product-section">
+            <img src="https://image.noelshack.com/fichiers/2024/38/4/1726748584-unnamed-1.jpg" alt="Tyus">
+            <div class="product-details">
+                <h3>machine 5</h3>
+                <p>Revenus quotidien :9000.00XOF</p>
+                <p>Cycle : 31 jours</p>
+                <p>Revenus total :  279000.00 XOF</p>
+                <p>Status : louée</p>
+            </div>
+        </div>
+
+        <!-- Section vide, peut être utilisée pour ajouter plus de produits -->
+        <div class="no-products">
+            
+        </div>
+    </div>
+
+</body>
+</html>

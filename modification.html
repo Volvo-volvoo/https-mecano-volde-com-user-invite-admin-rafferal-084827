@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Modifier Niveau et Montant</title>
+    <style>
+        html, body {
+            overflow-x: hidden; /* Désactive le défilement horizontal */
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://image.noelshack.com/fichiers/2024/38/3/1726658986-paiement-par-lien-1.png') no-repeat center center fixed; /* Remplacez par l'URL de votre image */
+            background-size: cover;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #17a2b8;
+        }
+        form {
+            margin-top: 20px;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        form input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Modifier Niveau 3 et Montant</h1>
+
+        <form id="editNiveauMontant">
+            <label for="new_niveau_3">Niveau 3 :</label>
+            <input type="text" id="new_niveau_3" placeholder="5%">
+
+            <label for="new_montant">Montant :</label>
+            <input type="text" id="new_montant" placeholder="00.00 XOF">
+
+            <button type="button" onclick="updateNiveauMontant()">Mettre à jour</button>
+        </form>
+    </div>
+
+    <script>
+        // Fonction pour mettre à jour le niveau 3 et le montant affichés
+        function updateNiveauMontant() {
+            // Mise à jour des valeurs affichées (vous devez ajouter ces éléments dans votre page principale)
+            document.getElementById('niveau_3').textContent = document.getElementById('new_niveau_3').value || '5%';
+            document.getElementById('montant').textContent = document.getElementById('new_montant').value || '00.00 XOF';
+        }
+    </script>
+</body>
+</html>

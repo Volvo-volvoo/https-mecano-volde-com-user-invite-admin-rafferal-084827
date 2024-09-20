@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier Mon Compte</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      padding: 20px;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Modifier Mon Compte</h1>
+  
+  <div>
+    <label for="solde">Solde :</label>
+    <input type="text" id="solde" placeholder="Entrez le solde" />
+  </div>
+  
+  <div>
+    <label for="gainsJour">Gains gagnés par jour :</label>
+    <input type="text" id="gainsJour" placeholder="Entrez les gains du jour" />
+  </div>
+  
+  <div>
+    <label for="gainsHier">Gains gagnés hier :</label>
+    <input type="text" id="gainsHier" placeholder="Entrez les gains d'hier" />
+  </div>
+  
+  <div>
+    <label for="totalProduits">Total de produits :</label>
+    <input type="text" id="totalProduits" placeholder="Entrez le total de produits" />
+  </div>
+  
+  <button onclick="updateValues()">Mettre à jour</button>
+
+  <div class="result">
+    <p id="displaySolde">Solde : 0.00 XOF</p>
+    <p id="displayGainsJour">Gains gagnés par jour : 0.00 XOF</p>
+    <p id="displayGainsHier">Gains gagnés hier : 0.00 XOF</p>
+    <p id="displayTotalProduits">Total de produits : 0</p>
+  </div>
+
+  <script>
+    function updateValues() {
+      const solde = document.getElementById('solde').value || '0.00 XOF';
+      const gainsJour = document.getElementById('gainsJour').value || '0.00 XOF';
+      const gainsHier = document.getElementById('gainsHier').value || '0.00 XOF';
+      const totalProduits = document.getElementById('totalProduits').value || '0';
+
+      // Mettre à jour les affichages
+      document.getElementById('displaySolde').textContent = `Solde : ${solde}`;
+      document.getElementById('displayGainsJour').textContent = `Gains gagnés par jour : ${gainsJour}`;
+      document.getElementById('displayGainsHier').textContent = `Gains gagnés hier : ${gainsHier}`;
+      document.getElementById('displayTotalProduits').textContent = `Total de produits : ${totalProduits}`;
+      
+      // Sauvegarder les valeurs dans le stockage local
+      localStorage.setItem('solde', solde);
+      localStorage.setItem('gainsJour', gainsJour);
+      localStorage.setItem('gainsHier', gainsHier);
+      localStorage.setItem('totalProduits', totalProduits);
+    }
+
+    window.onload = function() {
+      // Charger les valeurs du stockage local lors du chargement
+      document.getElementById('displaySolde').textContent = `Solde : ${localStorage.getItem('solde') || '0.00 XOF'}`;
+      document.getElementById('displayGainsJour').textContent = `Gains gagnés par jour : ${localStorage.getItem('gainsJour') || '0.00 XOF'}`;
+      document.getElementById('displayGainsHier').textContent = `Gains gagnés hier : ${localStorage.getItem('gainsHier') || '0.00 XOF'}`;
+      document.getElementById('displayTotalProduits').textContent = `Total de produits : ${localStorage.getItem('totalProduits') || '0'}`;
+    };
+  </script>
+
+</body>
+</html>

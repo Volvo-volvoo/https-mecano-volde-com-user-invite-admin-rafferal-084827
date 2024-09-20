@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approbation des Retraits</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #17a2b8;
+            color: white;
+        }
+        .withdrawal-section {
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .pending {
+            color: #ffc107;
+        }
+        .approved {
+            color: #28a745;
+        }
+        .rejected {
+            color: #dc3545;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button.approve {
+            background-color: #28a745;
+        }
+        button.reject {
+            background-color: #dc3545;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        input[type="datetime-local"] {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Approbation des Retraits</h1>
+
+    <div id="approvalsContainer">
+        <!-- Les informations sur chaque retrait à approuver seront affichées ici -->
+    </div>
+
+    <script>
+        let withdrawals = JSON.parse(localStorage.getItem('withdrawals')) || [];
+
+        function renderWithdrawals() {
+            const container = document.getElementById('approvalsContainer');
+            container.innerHTML = '';
+
+            withdrawals.forEach((withdrawal, index) => {
+                const statusClass = withdrawal.status === "Approuvé" ? "approved" : 
+                                   withdrawal.status === "Rejeté" ? "rejected" : "pending";
+                
+                const withdrawalSection = document.createElement('div');
+                withdrawalSection.className = 'withdrawal-section';
+
+                withdrawalSection.innerHTML = `
+                    <p>Montant : ${withdrawal.amount} FCFA</p>
+                    <p>Date actuelle : ${withdrawal.date}</p>
+                    <label for="date">Modifier la date et l'heure :</label>
+                    <input type="datetime-local" id="date-${index}" value="${withdrawal.datetimeLocal || ''}">
+                    <p>Statut : <span class="${statusClass}">${withdrawal.status}</span></p>
+                    <button class="approve" onclick="approveWithdrawal(${index})">Approuver</button>
+                    <button class="reject" onclick="rejectWithdrawal(${index})">Rejeter</button>
+                    <button onclick="saveDate(${index})">Enregistrer la date</button>
+                `;
+
+                container.appendChild(withdrawalSection);
+            });
+        }
+
+        function approveWithdrawal(index) {
+            withdrawals[index].status = "Approuvé";
+            localStorage.setItem('withdrawals', JSON.stringify(withdrawals));
+            renderWithdrawals();
+            alert('Retrait approuvé avec succès.');
+        }
+
+        function rejectWithdrawal(index) {
+            withdrawals[index].status = "Rejeté";
+            localStorage.setItem('withdrawals', JSON.stringify(withdrawals));
+            renderWithdrawals();
+            alert('Retrait rejeté avec succès.');
+        }
+
+        function saveDate(index) {
+            const newDateTime = document.getElementById(`date-${index}`).value;
+            if (newDateTime) {
+                withdrawals[index].date = newDateTime;
+                withdrawals[index].datetimeLocal = newDateTime;
+                localStorage.setItem('withdrawals', JSON.stringify(withdrawals));
+                alert('Date et heure modifiées avec succès.');
+                renderWithdrawals();
+            } else {
+                alert("Veuillez sélectionner une date et une heure.");
+            }
+        }
+
+        renderWithdrawals();
+    </script>
+</body>
+</html>

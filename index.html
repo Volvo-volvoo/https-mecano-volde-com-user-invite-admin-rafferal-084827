@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>mecanolVolde</title>
+  <style>
+    /* Styles existants */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: url('https://image.noelshack.com/fichiers/2024/38/2/1726579229-photoroom-20240917-131943.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      display: none; /* Masqué au début */
+    }
+
+    .loading-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .loading-container img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .loading-container h3 {
+      color: white;
+      margin-top: 10px;
+      font-size: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .toggle-btn {
+      margin-top: 10px;
+      background-color: #007bff;
+    }
+
+    .toggle-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .success {
+      color: green;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="loading-container">
+    <img src="https://image.noelshack.com/fichiers/2024/38/2/1726579229-photoroom-20240917-131943.jpg" alt="Chargement...">
+    <h3>Chargement en cours...</h3>
+  </div>
+
+  <div class="container" id="form-container">
+    <!-- Formulaire d'inscription -->
+    <form id="signupForm" onsubmit="submitSignup(event)">
+      <h2>Inscription</h2>
+      <input type="tel" id="signupPhone" placeholder="Numéro de téléphone" required />
+      <input type="password" id="signupPassword" placeholder="Mot de passe (6 chiffres)" required minlength="6" />
+      <input type="password" id="signupConfirmPassword" placeholder="Confirmer le mot de passe" required minlength="6" />
+      <input type="text" id="referralCode" placeholder="Code de parrainage" readonly />
+      <button type="submit">S'inscrire</button>
+      <button class="toggle-btn" type="button" onclick="toggleForms()">Se connecter</button>
+      <div id="signupError" class="error"></div>
+      <div id="signupSuccess" class="success"></div>
+    </form>
+
+    <!-- Formulaire de connexion -->
+    <form id="loginForm" class="hidden" onsubmit="submitLogin(event)">
+      <h2>Connexion</h2>
+      <input type="tel" id="loginPhone" placeholder="Numéro de téléphone" required />
+      <input type="password" id="loginPassword" placeholder="Mot de passe" required />
+      <button type="submit">Se connecter</button>
+      <button class="toggle-btn" type="button" onclick="toggleForms()">S'inscrire</button>
+      <div id="loginError" class="error"></div>
+      <div id="loginSuccess" class="success"></div>
+    </form>
+  </div>
+
+  <script>
+    function generateReferralCode() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let code = '';
+      for (let i = 0; i < 6; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return code;
+    }
+
+    document.getElementById('referralCode').value = generateReferralCode();
+
+    function toggleForms() {
+      document.getElementById('signupForm').classList.toggle('hidden');
+      document.getElementById('loginForm').classList.toggle('hidden');
+    }
+
+    function submitSignup(event) {
+      event.preventDefault(); // Empêche le rechargement de la page
+
+      const phone = document.getElementById('signupPhone').value;
+      const password = document.getElementById('signupPassword').value;
+      const confirmPassword = document.getElementById('signupConfirmPassword').value;
+      const errorElement = document.getElementById('signupError');
+      const successElement = document.getElementById('signupSuccess');
+
+      if (password !== confirmPassword) {
+        errorElement.textContent = 'Les mots de passe ne correspondent pas';
+        successElement.textContent = '';
+        return;
+      }
+
+      localStorage.setItem('phone', phone);
+      localStorage.setItem('password', password);
+
+      errorElement.textContent = '';
+      successElement.textContent = 'Inscription réussie !';
+
+      setTimeout(() => {
+        window.location.href = `mon-compte.html?phone=${encodeURIComponent(phone)}`;
+      }, 1000);
+    }
+
+    function submitLogin(event) {
+      event.preventDefault(); // Empêche le rechargement de la page
+
+      const phone = document.getElementById('loginPhone').value;
+      const password = document.getElementById('loginPassword').value;
+      const storedPhone = localStorage.getItem('phone');
+      const storedPassword = localStorage.getItem('password');
+      const errorElement = document.getElementById('loginError');
+      const successElement = document.getElementById('loginSuccess');
+
+      if (phone === storedPhone && password === storedPassword) {
+        successElement.textContent = 'Connexion réussie';
+        errorElement.textContent = '';
+
+        setTimeout(() => {
+          window.location.href = `mon-compte.html?phone=${encodeURIComponent(phone)}`;
+        }, 1000);
+      } else {
+        errorElement.textContent = 'Numéro de téléphone ou mot de passe incorrect';
+        successElement.textContent = '';
+      }
+    }
+
+    window.onload = function() {
+      setTimeout(() => {
+        document.querySelector('.loading-container').style.display = 'none';
+        document.getElementById('form-container').style.display = 'block';
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>

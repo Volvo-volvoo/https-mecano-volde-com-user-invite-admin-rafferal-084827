@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Retrait</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Faire un Retrait</h1>
+        <form id="withdraw-form">
+            <div class="form-group">
+                <label for="amount">Montant (XOF):</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+            <div class="form-group">
+                <label for="code">Code de Retrait:</label>
+                <input type="text" id="code" name="code" required>
+            </div>
+            <button type="submit" class="btn">Soumettre</button>
+        </form>
+        <h4>• Avant de lancer un retrait, assurez-vous que vous avez correctement lié votre portefeuille.</h4>
+        <h4>1- Minimum de retrait : 800 XOF</h4>
+        <h4>2- Frais de retrait : 10 %</h4>
+        <h4>3- Maximum de retrait : 780 000 XOF</h4>
+        <h4>4- Nombre de retraits par jour : une fois</h4>
+        <h4>5- La durée maximum d'un retrait est de 2h pour le traitement bancaire. En cas d'erreur, votre demande de retrait sera rejetée.</h4>
+    </div>
+    <script>
+        document.getElementById('withdraw-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const amount = parseFloat(document.getElementById('amount').value);
+            const code = document.getElementById('code').value;
+            const fee = (amount * 0.10).toFixed(2); // Calcul des frais (10%)
+            const status = 'En attente';
+            const dateTime = new Date().toLocaleString();
+
+            // Sauvegarde les informations de retrait dans le localStorage
+            const withdrawals = JSON.parse(localStorage.getItem('withdrawals')) || [];
+            withdrawals.push({
+                amount: amount.toFixed(2),
+                fee: fee,
+                status: status,
+                date: dateTime
+            });
+            localStorage.setItem('withdrawals', JSON.stringify(withdrawals));
+
+            // Redirection vers la page d'historique
+            window.location.href = 'historique.html';
+        });
+    </script>
+</body>
+</html>

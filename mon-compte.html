@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Page avec Logo, Identifiant, Solde et Boutons</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: url('https://image.noelshack.com/fichiers/2024/38/2/1726584782-photoroom-20240917-145241.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: space-between;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      color: #f8f9fa;
+    }
+
+    .header img {
+      max-width: 150px;
+      border-radius: 50%;
+    }
+
+    #solde {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      background-color: red;
+      padding: 10px;
+      margin-top: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      width: 150px;
+      margin: 0 auto;
+    }
+
+    .gains-section {
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      width: 300px;
+      margin: 10px auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .gains-section p {
+      margin: 5px 0;
+      color: black;
+      font-weight: bold;
+    }
+
+    .button-container {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 300px;
+      margin: 20px auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .button-group a {
+      background-color: #ffc107;
+      border: none;
+      border-radius: 50%;
+      padding: 6px;
+      color: black;
+      font-size: 12px;
+      text-decoration: none;
+      text-align: center;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      margin: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .button-group a:hover {
+      transform: scale(1.05);
+      background-color: #e0a800;
+    }
+
+    .fixed-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 5px 0;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .fixed-footer a {
+      background-color: #28a745;
+      border: none;
+      border-radius: 50%;
+      padding: 6px;
+      color: white;
+      font-size: 10px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .fixed-footer a:hover {
+      transform: scale(1.05);
+      background-color: #218838;
+    }
+
+    .fixed-footer a i {
+      font-size: 14px;
+    }
+
+    .fixed-footer a span {
+      font-size: 8px;
+      margin-top: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section Logo, Identifiant et Solde -->
+  <div class="header">
+    <img src="https://image.noelshack.com/fichiers/2024/38/4/1726748584-unnamed-1.jpg" alt="Logo">
+    <p id="phoneNumber">Identifiant : Inconnu</p>
+    <p id="solde">500.00 XOF</p>
+
+    <!-- Nouvelle section gains -->
+    <div class="gains-section">
+      <p id="gains-jour">Gains gagnés par jour : 00.00 XOF</p>
+      <p id="gains-hier">Gains gagnés hier : 00.00 XOF</p>
+      <p id="total-produits">Total de produits : 0</p>
+    </div>
+
+    <!-- Section carrée blanche pour les boutons -->
+    <div class="button-container">
+      <div class="button-group">
+        <a href="depot.html" title="Recharge">
+          ⚡️<span>Recharge</span>
+        </a>
+        <a href="retrait.html" title="Retrait">
+          💸<span>Retrait</span>
+        </a>
+        <a href="produit.html" title="Produit">
+          📦<span>Produit</span>
+        </a>
+        <a href="service.html" title="Service">
+          👤<span>Service</span>
+        </a>
+        <a href="portefeuille.html" title="Bancaire">
+          🗳<span>Bancaire</span>
+        </a>
+        <a href="carte_bancaire.html" title="Ma carte">
+          🪪<span>Ma carte</span>
+        </a>
+        <a href="historique-recharge.html" title="H Retrait">
+          🗑<span>H Recharge</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Boutons fixes en bas de page -->
+  <div class="fixed-footer">
+    <a href="page-principale.html" title="Home">
+      <i>🎨</i><span>Produit</span>
+    </a>
+    <a href="historique.html" title="Historique">
+      <i>🗑</i><span>Historique</span>
+    </a>
+    <a href="equipe.html" title="Team">
+      <i>🚹</i><span>Team</span>
+    </a>
+    <a href="#" title="Compte">
+      <i>🪙</i><span>Compte</span>
+    </a>
+  </div>
+
+  <script>
+    function getQueryParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    function setPhoneNumber(phone) {
+      localStorage.setItem('phoneNumber', phone);
+      document.getElementById('phoneNumber').textContent = `Identifiant : ${phone}`;
+    }
+
+    // Chargement des données
+    window.onload = function() {
+      let phone = getQueryParameter('phone');
+      if (phone) {
+        setPhoneNumber(phone);
+      } else {
+        phone = localStorage.getItem('phoneNumber');
+        if (phone) {
+          document.getElementById('phoneNumber').textContent = `Identifiant : ${phone}`;
+        } else {
+          document.getElementById('phoneNumber').textContent = 'Identifiant : Inconnu';
+        }
+      }
+
+      // Charger les valeurs du stockage local pour le solde et les gains
+      document.getElementById('solde').textContent = localStorage.getItem('solde') || '500.00 XOF';
+      document.getElementById('gains-jour').textContent = `Gains gagnés par jour : ${localStorage.getItem('gainsJour') || '00.00 XOF'}`;
+      document.getElementById('gains-hier').textContent = `Gains gagnés hier : ${localStorage.getItem('gainsHier') || '00.00 XOF'}`;
+      document.getElementById('total-produits').textContent = `Total de produits : ${localStorage.getItem('totalProduits') || '0'}`;
+    };
+  </script>
+
+</body>
+</html>

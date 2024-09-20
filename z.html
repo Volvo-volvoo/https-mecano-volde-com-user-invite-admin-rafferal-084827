@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Confirmation du Produit</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('https://image.noelshack.com/fichiers/2024/38/4/1726747590-6160yxtu4hl-ac-uf350-350-ql50.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .confirmation-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      animation: fadeIn 1s ease;
+    }
+
+    .confirmation-container img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: transform 0.5s ease;
+    }
+
+    .confirmation-container img:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .confirm-btn {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .confirm-btn:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+
+    .error-message {
+      color: red;
+      font-size: 16px;
+      margin-top: 20px;
+      display: none; /* Masquer le message par défaut */
+      opacity: 0; /* Masquer le message par défaut */
+      animation: fadeIn 0.5s ease forwards; /* Animation de fondu */
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="confirmation-container">
+    <img src="https://image.noelshack.com/fichiers/2024/38/4/1726747590-6160yxtu4hl-ac-uf350-350-ql50.jpg"
+" alt="Produit Image">
+    <h1>machine 4 : 65000.00 XOF</h1>
+    <p>Merci pour votre sélection. Vous êtes sur le point de confirmer l'achat de ce machine.</p>
+    <a href="#" class="confirm-btn" id="confirmBtn">Confirmer</a>
+    <p id="errorMessage" class="error-message">Solde insuffisant 500.00 XOF</p>
+  </div>
+
+  <script>
+    document.getElementById('confirmBtn').addEventListener('click', function(event) {
+      event.preventDefault(); // Empêche le comportement par défaut du lien
+
+      // Simuler une vérification de solde insuffisant
+      var soldeSuffisant = false; // Changez cette variable pour tester
+
+      var errorMessage = document.getElementById('errorMessage');
+      if (!soldeSuffisant) {
+        errorMessage.style.display = 'block'; // Affiche le message d'erreur
+        errorMessage.classList.add('fadeIn'); // Ajoute la classe d'animation
+      } else {
+        // Rediriger ou traiter la confirmation ici
+        window.location.href = 'https://example.com/confirmation';
+      }
+    });
+  </script>
+
+</body>
+</html>
